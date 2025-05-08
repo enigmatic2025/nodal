@@ -7,9 +7,7 @@ export interface UserProfile {
     avatarUrl: string,
 }
 
-export interface UserMetadata extends UserProfile {}
-
-export const user: UserMetadata = {
+export const user: UserProfile = {
     firstName: "Anthony",
     lastName: "Flores",
     team: "Integration Engineering",
