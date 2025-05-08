@@ -13,8 +13,7 @@ export function NavBarButton({ label, icon, count }: NavBarButtonProps) {
             <p className="font-normal">{label}</p>
             {
                 count > 0 &&
-                <div className="flex w-[20px] h-full text-[0.8rem] text-white font-semibold justify-center items-center aspect-square ml-auto rounded-full bg-red-500 p-3 antialiased">
-                    {count}
+                <div className="flex w-2 h-full text-[0.8rem] text-white font-semibold justify-center items-center aspect-square ml-auto rounded-full bg-red-500">
                 </div>
             }
         </div>

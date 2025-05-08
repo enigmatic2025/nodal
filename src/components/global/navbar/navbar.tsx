@@ -21,7 +21,7 @@ export default function NavBar() {
                     ))
                 }
             </div>
-            <div className="flex flex-row w-full justify-start items-center gap-x-5 mt-auto">
+            <div className="flex flex-row w-full justify-start items-center rounded-md gap-x-5 mt-auto">
                 <Image
                     src={'/user.jpeg'}
                     alt="logo"
