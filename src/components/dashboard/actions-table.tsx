@@ -10,7 +10,7 @@ export function ActionsTable() {
                 <div>DUE DATE</div>
                 <div>AUDIT TRAIL</div>
             </div>
-            <div className="flex flex-col text-[0.9rem]">
+            <div className="flex flex-col text-[0.8rem]">
                 {
                     ActionsData.map((item, index) => (
                         <div key={index} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b-[0.5px] border-black/20 cursor-pointer">
@@ -24,7 +24,6 @@ export function ActionsTable() {
                                     justify-center
                                     items-center
                                     rounded-full
-                                    font-semibold
                                     gap-2
                                     `}>
                                     {item.status}
