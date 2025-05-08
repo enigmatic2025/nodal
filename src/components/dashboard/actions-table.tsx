@@ -1,6 +1,18 @@
+"use client"
+
+import { useState } from "react"
 import { ActionsData } from "@/data/actions-data"
+import { AuditTrailData } from "@/data/actions-data"
+import { Button } from "../global/button"
+import { Chat } from "../global/chat"
+import { Modal } from "../global/modal"
+import { AuditTrail } from "../global/audit-trail"
+
+
 
 export function ActionsTable() {
+    const [open, setOpen] = useState<boolean>(false)
+
     return (
         <div className="flex-grow min-h-[590px] min-w-[600px] border-[0.5px] border-black/20 rounded-md pb-5 pl-5 pr-5 overflow-auto">
             <div className="sticky top-0 grid grid-cols-5 gap-x-5 bg-white z-10 py-3 text-black font-semibold">
@@ -26,7 +38,7 @@ export function ActionsTable() {
                                     rounded-full
                                     gap-2
                                     `}>
-                                    {item.status}
+                                {item.status}
                             </div>
                             <div>
                                 {item.process}
@@ -38,11 +50,27 @@ export function ActionsTable() {
                                 {item.duedate.toLocaleDateString()}
                             </div>
                             <div>
-                                <button className="flex justify-center items-center text-[#6581FF] w-[10ch] border-[#6581FF] border-1 rounded-full hover:font-semibold cursor-pointer p-1">Open</button>
+                                <Button onClick={() => { setOpen(true) }}>Open</Button>
                             </div>
                         </div>
                     ))
                 }
+                <Modal isOpen={open} onClose={() => setOpen(false)}>
+                    <div className="flex flex-row justify-center h-200 w-200 gap-x-5 p-5">
+                        <div className="h-full w-full">
+                            <p className="font-semibold text-2xl mb-5">Audit Trail</p>
+                            <div className="h-180">
+                                <AuditTrail data={AuditTrailData} />
+                            </div>
+                        </div>
+                        <div className="h-full w-full">
+                            <p className="font-semibold text-2xl mb-5">Notes</p>
+                            <div className="h-180">
+                                <Chat />
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         </div>
     )
