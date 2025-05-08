@@ -56,16 +56,16 @@ export function ActionsTable() {
                     ))
                 }
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
-                    <div className="flex flex-row justify-center h-200 w-200 gap-x-10 p-5">
+                    <div className="flex flex-row justify-center h-full w-200 gap-x-10 p-5">
                         <div className="h-full w-full">
                             <p className="font-semibold text-2xl mb-5">Audit Trail</p>
-                            <div className="h-180">
+                            <div className="h-[50vh]">
                                 <AuditTrail data={AuditTrailData} />
                             </div>
                         </div>
                         <div className="h-full w-full">
                             <p className="font-semibold text-2xl mb-5">Notes</p>
-                            <div className="h-180">
+                            <div className="h-[50vh]">
                                 <Chat />
                             </div>
                         </div>
