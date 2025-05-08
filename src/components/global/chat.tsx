@@ -61,26 +61,25 @@ export function Chat() {
                         className={`max-w-[75%] p-2 rounded-2xl break-words ${note.fromMe
                             ? "ml-auto bg-[#6581FF] text-white"
                             : "mr-auto bg-black/5 text-black"
-                            }`}
+                            }
+                            text-xs
+                            `}
                     >
                         <span className={`${note.fromMe
                             ? "hidden"
                             : "text-[#6581FF]"
                             }
                             block
-                            text-xs
                             mb-1
                             text-left
                             `}
                         >{note.user}</span>
-                        <p className="text-sm">{note.text}</p>
+                        <p className="text-xs mb-1">{note.text}</p>
                         <span className={`${note.fromMe
                             ? "text-white"
                             : "text-gray-400"
                             }
                             block
-                            text-xs
-                            mt-1
                             text-right
                             `}
                         >{note.timestamp}</span>
@@ -95,7 +94,7 @@ export function Chat() {
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={onKey}
                     rows={1}
-                    className="flex-1 resize-none rounded-lg border border-black/20 p-2 text-sm focus:outline-none"
+                    className="flex-1 resize-none rounded-md border border-black/20 p-2 focus:outline-none"
                     placeholder="Add a note..."
                 />
                 <Button onClick={sendNote}>
