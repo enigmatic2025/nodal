@@ -13,17 +13,18 @@ export function ActionsTable() {
             <div className="flex flex-col text-[0.9rem]">
                 {
                     ActionsData.map((item, index) => (
-                        <div key={index} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 cursor-pointer">
+                        <div key={index} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b-[0.5px] border-black/20 cursor-pointer">
                             <div>
                                 <div className={`
                                     ${item.status === "In Progress" ? "bg-blue-500" : ""}
                                     ${item.status === "Complete" ? "bg-green-400" : ""}
                                     ${item.status === "Cancelled" ? "bg-gray-200" : ""}
-                                    w-5
+                                    w-3
                                     h-full
                                     aspect-square
                                     rounded-full
                                     `} />
+                                    {item.status}
                             </div>
                             <div className="font-semibold">
                                 {item.process}
