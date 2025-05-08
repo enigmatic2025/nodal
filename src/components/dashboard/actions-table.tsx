@@ -37,6 +37,9 @@ export function ActionsTable() {
                             <div>
                                 {item.duedate.toLocaleDateString()}
                             </div>
+                            <div>
+                                <button className="flex justify-center items-center text-[#6581FF] w-[10ch] border-[#6581FF] border-1 rounded-full hover:font-semibold cursor-pointer p-1">Open</button>
+                            </div>
                         </div>
                     ))
                 }
