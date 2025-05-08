@@ -2,7 +2,7 @@ import { ActionsTable } from "@/components/dashboard/actions-table"
 
 export default function Dashboard() {
     return (
-        <div className="flex flex-col h-[96vh] w-full text-black bg-white rounded-md shadow-sm p-5 overflow-y-auto">
+        <div className="flex flex-col h-[98vh] w-full text-black bg-white rounded-md shadow-sm p-5 overflow-y-auto">
             <h1 className="text-2xl font-normal mb-5">Dashboard</h1>
             <div className="pt-5 pb-5">
                 <h2 className="text-lg font-semibold mb-3">Quick Access</h2>
