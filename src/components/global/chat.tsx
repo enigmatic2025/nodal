@@ -52,37 +52,26 @@ export function Chat() {
 
     return (
         <div className="flex flex-col h-full border-[0.5px] border-black/20 rounded-md overflow-hidden">
-            
+
             {/* Messages */}
             <div ref={scrollRef} className="flex-1 px-2 py-2 overflow-y-auto space-y-2 bg-white">
                 {notes.map((note) => (
                     <div
                         key={note.id}
-                        className={`max-w-[75%] p-2 rounded-2xl break-words ${note.fromMe
-                            ? "ml-auto bg-[#6581FF] text-white"
-                            : "mr-auto bg-black/5 text-black"
+                        className={`w-full p-2 rounded-md break-words ${note.fromMe
+                            ? "ml-auto border-[1px] border-[#6581FF]"
+                            : "mr-auto"
                             }
                             text-xs
                             `}
                     >
-                        <span className={`${note.fromMe
-                            ? "hidden"
-                            : "text-[#6581FF]"
-                            }
-                            block
-                            mb-1
-                            text-left
-                            `}
-                        >{note.user}</span>
+                        <span className={"text-[#6581FF] block mb-1 text-left"}>
+                            {note.fromMe ? "You" : note.user}
+                        </span>
                         <p className="text-xs mb-1">{note.text}</p>
-                        <span className={`${note.fromMe
-                            ? "text-white"
-                            : "text-gray-400"
-                            }
-                            block
-                            text-right
-                            `}
-                        >{note.timestamp}</span>
+                        <span className={"text-gray-400 block text-right"}>
+                            {note.timestamp}
+                        </span>
                     </div>
                 ))}
             </div>
@@ -98,7 +87,7 @@ export function Chat() {
                     placeholder="Add a note..."
                 />
                 <Button onClick={sendNote}>
-                    Send
+                    Add Note
                 </Button>
             </div>
         </div>

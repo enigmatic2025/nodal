@@ -1,3 +1,4 @@
+import NavBar from "@/components/global/navbar/navbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -23,13 +24,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-            <head>
-        <link rel="icon" href="/nodal-black.svg"/>
+      <head>
+        <link rel="icon" href="/nodal-black.svg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} subpixel-antialiased`}
       >
-        {children}
+        <div className="relative flex h-screen justify-center items-start gap-2 bg-black/5  p-2 overflow-hidden">
+          <NavBar />
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -3,12 +3,13 @@ import { ReactElement } from "react";
 interface NavBarButtonProps {
     label: string,
     icon: ReactElement<SVGSVGElement>,
+    active: boolean,
     count: number,
 }
 
-export function NavBarButton({ label, icon, count }: NavBarButtonProps) {
+export function NavBarButton({ label, icon, active, count }: NavBarButtonProps) {
     return (
-        <div className="flex flex-row justify-start items-center gap-x-5 rounded-md hover:bg-[#6581FF] hover:text-white cursor-pointer p-1">
+        <div className={`${active ? "bg-[#6581FF] text-white" : ""} flex flex-row justify-start items-center gap-x-5 rounded-md hover:bg-[#6581FF] hover:text-white cursor-pointer p-1`}>
             {icon}
             <p className="font-normal text-[0.9rem]">{label}</p>
             {

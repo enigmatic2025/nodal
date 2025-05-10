@@ -1,9 +1,15 @@
+"use client"
+
 import Image from "next/image"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { user } from "@/data/user-data"
 import { NavBarButtonData } from "@/data/navbar-data"
 import { NavBarButton } from "./navbar-button"
 
 export default function NavBar() {
+    const pathname = usePathname();
+
     return (
         <div className="flex flex-col min-h-[98vh] justify-start items-center min-w-[250px] bg-white text-black rounded-md shadow-sm p-5 overflow-y-auto">
             <Image
@@ -15,11 +21,19 @@ export default function NavBar() {
             />
             <div className="w-full border-[0.5px] border-black/10 mb-5" />
             <div className="flex flex-col w-full gap-y-3 mb-10">
-                {
-                    NavBarButtonData.map((item, index) => (
-                        <NavBarButton key={index} label={item.label} icon={item.icon} count={item.count} />
-                    ))
-                }
+                {NavBarButtonData.map((item) => {
+                    const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+                    return (
+                        <Link key={item.href} href={item.href} passHref>
+                            <NavBarButton
+                                label={item.label}
+                                icon={item.icon}
+                                count={item.count}
+                                active={isActive}
+                            />
+                        </Link>
+                    );
+                })}
             </div>
             <div className="flex flex-row w-full justify-start items-center rounded-md gap-x-5 mt-auto">
                 <Image

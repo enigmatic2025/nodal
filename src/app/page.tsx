@@ -1,11 +1,4 @@
-import Dashboard from "./dashboard/page";
-import NavBar from "@/components/global/navbar/navbar";
-
+import { redirect } from "next/navigation"
 export default function Home() {
-  return (
-    <div className="relative flex h-screen justify-center items-start gap-2 bg-black/5  p-2 overflow-hidden">
-      <NavBar />
-      <Dashboard />
-    </div>
-  );
+  redirect("/dashboard")
 }
