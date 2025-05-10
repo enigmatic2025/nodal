@@ -9,13 +9,21 @@ interface NavBarButtonProps {
 
 export function NavBarButton({ label, icon, active, count }: NavBarButtonProps) {
     return (
-        <div className={`${active ? "bg-[#6581FF] text-white" : ""} flex flex-row justify-start items-center gap-x-5 rounded-md hover:bg-[#6581FF] hover:text-white cursor-pointer p-1`}>
+        <div className={`group ${active ? "bg-[#6581FF] text-white" : ""} flex flex-row justify-start items-center gap-x-5 rounded-md hover:bg-[#6581FF] hover:text-white cursor-pointer p-1`}>
             {icon}
             <p className="font-normal text-[0.9rem]">{label}</p>
             {
                 count > 0 &&
-                <div className="flex w-2 h-full text-white font-semibold justify-center items-center aspect-square ml-auto rounded-full bg-red-500">
-                </div>
+                <div className={`
+                ml-auto 
+                mr-1
+                ${active ? "bg-white" : "bg-red-500"} 
+                flex w-2 h-2 justify-center items-center 
+                aspect-square 
+                rounded-full 
+                group-hover:bg-white
+                `}
+                />
             }
         </div>
     )
