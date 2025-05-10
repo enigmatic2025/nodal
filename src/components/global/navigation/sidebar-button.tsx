@@ -7,7 +7,7 @@ interface NavBarButtonProps {
     count: number,
 }
 
-export function NavBarButton({ label, icon, active, count }: NavBarButtonProps) {
+export function SideBarButton({ label, icon, active, count }: NavBarButtonProps) {
     return (
         <div className={`group ${active ? "bg-[#6581FF] text-white" : ""} flex flex-row justify-start items-center gap-x-5 rounded-md hover:bg-[#6581FF] hover:text-white cursor-pointer p-1`}>
             {icon}

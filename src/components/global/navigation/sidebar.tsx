@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { user } from "@/data/user-data"
 import { NavBarButtonData } from "@/data/navbar-data"
-import { NavBarButton } from "./navbar-button"
+import { SideBarButton } from "./sidebar-button"
 
-export default function NavBar() {
+export default function SideBar() {
     const pathname = usePathname();
 
     return (
@@ -25,7 +25,7 @@ export default function NavBar() {
                     const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
                     return (
                         <Link key={item.href} href={item.href} passHref>
-                            <NavBarButton
+                            <SideBarButton
                                 label={item.label}
                                 icon={item.icon}
                                 count={item.count}
