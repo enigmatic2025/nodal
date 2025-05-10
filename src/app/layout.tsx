@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} subpixel-antialiased`}
       >
-        <div className="relative flex h-screen justify-center items-start gap-2 bg-black/5  p-2 overflow-hidden">
+        <div className="relative flex h-screen justify-center items-start gap-2 bg-black/10  p-2 overflow-hidden">
           <NavBar />
           {children}
         </div>
