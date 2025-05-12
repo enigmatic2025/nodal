@@ -62,7 +62,7 @@ export function Chat() {
                 {notes
                     .sort((a, b) => b.id - a.id)
                     .map((note) => (
-                        <div className="flex flex-row gap-x-2 w-full">
+                        <div key={note.id} className="flex flex-row gap-x-2 w-full">
                             <UserAvatar user={{ name: note.user, image: undefined }} />
                             <div
                                 key={note.id}
