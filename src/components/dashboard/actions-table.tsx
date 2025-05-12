@@ -25,7 +25,7 @@ export function ActionsTable() {
             <div className="flex flex-col text-[0.8rem]">
                 {
                     ActionsData.map((item, index) => (
-                        <div key={index} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b-[0.5px] border-black/20 cursor-pointer">
+                        <div key={index} onClick={() => window.open(item.link)} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b-[0.5px] border-black/20 cursor-pointer">
                             <div className={`
                                     ${item.status === "In Progress" ? "bg-blue-100 text-blue-500" : ""}
                                     ${item.status === "Complete" ? "bg-green-100 text-green-500" : ""}
@@ -49,23 +49,24 @@ export function ActionsTable() {
                             <div>
                                 {item.duedate.toLocaleDateString()}
                             </div>
-                            <div>
+                            <div onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen(true);
+                            }}>
                                 <Button onClick={() => { setOpen(true) }}>Open</Button>
                             </div>
                         </div>
                     ))
                 }
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
-                    <div className="flex flex-row justify-center h-full w-200 gap-x-10 p-5">
-                        <div className="h-full w-full">
-                            <p className="font-semibold text-2xl mb-5">Audit Trail</p>
-                            <div className="h-[50vh]">
+                    <div className="flex flex-col justify-start h-[80vh] w-200 gap-x-10 p-5">
+                        <p className="font-semibold text-2xl mb-5">Audit Trail</p>
+                        <div className="h-full overflow-y-auto p-1">
+                            <div className="w-full mb-10">
                                 <AuditTrail data={AuditTrailData} />
                             </div>
-                        </div>
-                        <div className="h-full w-full">
-                            <p className="font-semibold text-2xl mb-5">Notes</p>
-                            <div className="h-[50vh]">
+                            < div className="w-full border-[0.5px] border-black/20 mt-5 mb-5" />
+                            <div className="h-full w-full">
                                 <Chat />
                             </div>
                         </div>

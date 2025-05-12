@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect, KeyboardEvent } from "react"
-import { Button } from "./button";
+import { useState, useRef, KeyboardEvent } from "react"
+import { UserAvatar } from "./user-avatar";
 
 interface Note {
     id: number;
@@ -26,14 +26,6 @@ export function Chat() {
         { id: 9, text: "👍 I’ll monitor for errors and confirm when done.", user: "Jeff Nemmers", timestamp: "2:16 PM", fromMe: false },
     ]);
 
-    useEffect(() => {
-        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "auto" });
-    }, []);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-    }, [notes]);
-
     const sendNote = () => {
         if (!draft.trim()) return;
         setNotes((prev) => [
@@ -51,44 +43,41 @@ export function Chat() {
     };
 
     return (
-        <div className="flex flex-col h-full border-[0.5px] border-black/20 rounded-md overflow-hidden">
-
-            {/* Messages */}
-            <div ref={scrollRef} className="flex-1 px-2 py-2 overflow-y-auto space-y-2 bg-white">
-                {notes.map((note) => (
-                    <div
-                        key={note.id}
-                        className={`w-full p-2 rounded-md break-words ${note.fromMe
-                            ? "ml-auto border-[1px] border-[#6581FF]"
-                            : "mr-auto"
-                            }
-                            text-xs
-                            `}
-                    >
-                        <span className={"text-[#6581FF] block mb-1 text-left"}>
-                            {note.fromMe ? "You" : note.user}
-                        </span>
-                        <p className="text-xs mb-1">{note.text}</p>
-                        <span className={"text-gray-400 block text-right"}>
-                            {note.timestamp}
-                        </span>
-                    </div>
-                ))}
-            </div>
+        <div className="flex flex-col h-full w-full">
 
             {/* Input bar */}
-            <div className="px-4 py-2 bg-white border-[0.5px] border-black/20 flex items-center space-x-2">
+            <div className="flex flex-col gap-y-1 items-start mb-10">
                 <textarea
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={onKey}
-                    rows={1}
-                    className="flex-1 resize-none rounded-md border border-black/20 p-2 focus:outline-none"
+                    rows={4}
+                    className="flex rounded-md border-1 w-full border-[#6581FF] p-2 resize-none focus:outline-none"
                     placeholder="Add a note..."
                 />
-                <Button onClick={sendNote}>
-                    Add Note
-                </Button>
+            </div>
+
+            {/* Messages */}
+            <div ref={scrollRef} className="flex-1 space-y-5 bg-white">
+                {notes
+                    .sort((a, b) => b.id - a.id)
+                    .map((note) => (
+                        <div className="flex flex-row gap-x-2 w-full">
+                            <UserAvatar user={{ name: note.user, image: undefined }} />
+                            <div
+                                key={note.id}
+                                className={"w-full rounded-md break-words text-[0.8rem]"}
+                            >
+                                <span className={"font-bold block mb-1 text-left"}>
+                                    {note.user}
+                                </span>
+                                <p className="text-[0.8rem] mb-1">{note.text}</p>
+                                <span className={"text-gray-400 mb-1 block text-right"}>
+                                    {note.timestamp}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
             </div>
         </div>
     )

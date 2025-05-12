@@ -14,7 +14,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "flex items-center justify-center",
           "text-[#6581FF]",
           "w-[10ch]",
-          "border border-[#6581FF]",
+          "border-1 border-[#6581FF]",
           "rounded-full",
           "p-1",
           "hover:font-semibold",

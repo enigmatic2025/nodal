@@ -4,23 +4,23 @@ interface HeaderBarProps {
 
 export default function HeaderBar({ label }: HeaderBarProps) {
     return (
-        <div className="flex flex-row gap-x-5 items-center mb-5">
+        <div className="flex flex-row text-[0.8rem] gap-x-5 items-center mb-5">
             <h1 className="text-2xl w-[13ch]">{label}</h1>
             <textarea
                 placeholder="Search"
                 rows={1}
-                className="flex min-w-[50%] resize-none rounded-md border-1 border-[#6581FF] p-2 focus:outline-none ml-auto">
+                className="flex min-w-[50%] resize-none rounded-md border-1 border-[#6581FF] text-[1rem] p-2 focus:outline-none ml-auto">
             </textarea>
             <div className="flex flex-row gap-x-5 ml-auto pr-5">
                 <div className="group flex items-center gap-x-1 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-[#6581FF] lucide lucide-message-circle-question-icon lucide-message-circle-question"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
-                    <div className="text-xs text-gray-500 group-hover:text-[#6581FF] cursor-pointer">
+                    <div className="text-gray-500 group-hover:text-[#6581FF] cursor-pointer">
                         Support
                     </div>
                 </div>
                 <div className="group flex items-center gap-x-1 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-[#6581FF] lucide lucide-message-square-text-icon lucide-message-square-text"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /><path d="M13 8H7" /><path d="M17 12H7" /></svg>
-                    <div className="text-xs text-gray-500 group-hover:text-[#6581FF] cursor-pointer">
+                    <div className="text-gray-500 group-hover:text-[#6581FF] cursor-pointer">
                         Feedback
                     </div>
                 </div>
@@ -36,7 +36,7 @@ export default function HeaderBar({ label }: HeaderBarProps) {
                         bg-red-500
                         `}
                     />
-                    <div className="text-xs text-gray-500 group-hover:text-[#6581FF] cursor-pointer">
+                    <div className="text-gray-500 group-hover:text-[#6581FF] cursor-pointer">
                         Notifications
                     </div>
                 </div>
