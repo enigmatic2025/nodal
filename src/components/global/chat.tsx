@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, KeyboardEvent } from "react"
-import { Button } from "./button";
 import { UserAvatar } from "./user-avatar";
 
 interface Note {
