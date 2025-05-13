@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, KeyboardEvent } from "react"
+import { Button } from "./button";
 import { UserAvatar } from "./user-avatar";
 
 interface Note {
@@ -25,6 +26,12 @@ export function Chat() {
         { id: 8, text: "Heads up: database migration script is ready.", user: "Anthony Flores", timestamp: "2:15 PM", fromMe: true },
         { id: 9, text: "👍 I’ll monitor for errors and confirm when done.", user: "Jeff Nemmers", timestamp: "2:16 PM", fromMe: false },
     ]);
+    const suggestions = [
+        "Need clarification on this step.",
+        "Waiting on response from others.",
+        "Will follow up tomorrow. 🙏",
+        "My part is done! 🥳",
+    ];
 
     const sendNote = () => {
         if (!draft.trim()) return;
@@ -44,7 +51,6 @@ export function Chat() {
 
     return (
         <div className="flex flex-col h-full w-full">
-
             {/* Input bar */}
             <div className="flex flex-col gap-y-1 items-start mb-10">
                 <textarea
@@ -52,9 +58,20 @@ export function Chat() {
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={onKey}
                     rows={4}
-                    className="flex rounded-md border-1 w-full border-[#6581FF] p-2 resize-none focus:outline-none"
+                    className="flex rounded-md border-1 w-full border-[#6581FF] p-2 resize-none focus:outline-none mb-2"
                     placeholder="Add a note..."
                 />
+                <div className="flex w-full gap-2">
+                    {suggestions.map((text, idx) => (
+                        <div
+                            key={idx}
+                            onClick={() => setDraft(text)}
+                            className="flex justify-center items-center text-center bg-[#6581FF]/5 border-1 border-[#6581FF] text-[#6581FF] rounded-full w-full text-xs p-1 cursor-pointer"
+                        >
+                            {text}
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Messages */}

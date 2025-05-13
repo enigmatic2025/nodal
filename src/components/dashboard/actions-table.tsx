@@ -63,10 +63,12 @@ export function ActionsTable() {
                         <p className="font-semibold text-2xl mb-5">Audit Trail</p>
                         <div className="h-full overflow-y-auto p-1">
                             <div className="w-full mb-10">
+                                <p className="font-normal text-lg mb-5">Logs</p>
                                 <AuditTrail data={AuditTrailData} />
                             </div>
                             < div className="w-full border-[0.5px] border-black/20 mt-5 mb-5" />
                             <div className="h-full w-full">
+                                <p className="font-normal text-lg mb-5">Notes</p>
                                 <Chat />
                             </div>
                         </div>
