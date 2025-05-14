@@ -9,7 +9,7 @@ export function UserAvatar({ user }: { user: { name: string, image?: string } })
   };
 
   return (
-    <div className="flex justify-center items-center h-10 aspect-square rounded-full border-2 border-black/20 text-xs font-bold text-black">
+    <div className="flex justify-center items-center h-10 aspect-square rounded-full bg-[#6581FF]/10 text-xs font-bold text-[#6581FF]">
       {user.image ? (
         <Image
           src={user.image}

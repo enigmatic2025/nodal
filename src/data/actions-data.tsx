@@ -15,11 +15,32 @@ export interface AuditEntry {
 }
 
 export const AuditTrailData: AuditEntry[] = [
-    { id: 4920, label: "Action assigned to John Wiseman", user: "John Wiseman", timestamp: "2025-05-01 10:12" },
-    { id: 5013, label: "Action unassigned", user: "Ashley Alexander", timestamp: "2025-05-02 14:35" },
-    { id: 7931, label: "Action assigned to Jeff Nemmers", user: "Ashley Alexander", timestamp: "2025-05-03 09:20" },
-    { id: 8367, label: "Action completed", user: "Jeff Nemmers", timestamp: "2025-05-04 16:50" },
+  {
+    id: 4920,
+    label: "The task was successfully assigned to John Wiseman for further action and follow-up.",
+    user: "John Wiseman",
+    timestamp: "2025-05-01 10:12",
+  },
+  {
+    id: 5013,
+    label: "The previously assigned action has been unassigned by Ashley Alexander and is now pending reassignment.",
+    user: "Ashley Alexander",
+    timestamp: "2025-05-02 14:35",
+  },
+  {
+    id: 7931,
+    label: "Ashley Alexander reassigned the action item to Jeff Nemmers to ensure timely completion.",
+    user: "Ashley Alexander",
+    timestamp: "2025-05-03 09:20",
+  },
+  {
+    id: 8367,
+    label: "Jeff Nemmers marked the task as completed after verifying all requirements were met.",
+    user: "Jeff Nemmers",
+    timestamp: "2025-05-04 16:50",
+  },
 ];
+
 
 export const ActionsData: Action[] = [
   {

@@ -11,7 +11,7 @@ export default function SideBar() {
     const pathname = usePathname();
 
     return (
-        <div className="flex flex-col min-h-[98vh] justify-start items-center min-w-[250px] bg-white text-black rounded-md shadow-sm p-5 overflow-y-auto">
+        <div className="flex flex-col min-h-[99vh] justify-start items-center min-w-[250px] bg-white text-black rounded-md shadow-sm p-5 overflow-y-auto">
             <Image
                 src={'/nodal-color-black.svg'}
                 alt="logo"
