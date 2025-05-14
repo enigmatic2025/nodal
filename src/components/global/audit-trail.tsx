@@ -11,13 +11,9 @@ interface AuditTrailData {
 
 export function AuditTrail({ data }: AuditTrailData) {
     return (
-        <div className="h-full text-[0.8rem]">
-            <div className="flex items-center gap-x-2 mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" stroke-linecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
-                Audit trail enables you to follow the process flow from start to finish.
-            </div>
-            <div className="h-full overflow-y-auto">
-                <div className="grid grid-cols-1 gap-y-5 rounded-md p-5">
+        <div className="flex flex-col h-full text-[0.8rem]">
+            <div className="h-full">
+                <div className="grid grid-cols-1 gap-y-5 p-5">
                     {data.map((entry, index) => (
                         <div key={entry.id} className="relative flex items-center gap-x-5 p-1">
                             {/* ID and timestamp */}
@@ -40,8 +36,7 @@ export function AuditTrail({ data }: AuditTrailData) {
 
                             {/* Label and user */}
                             <div className="flex-1 border border-[#6581FF] border-dashed rounded-md p-1">
-                                <p className="w-[90%]">{entry.label}</p>
-                                <p className="mt-1">{entry.user}</p>
+                                <p className="font-semibold w-[90%]">{entry.label}</p>
                             </div>
                         </div>
                     ))}

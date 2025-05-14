@@ -60,11 +60,17 @@ export function ActionsTable() {
                 }
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
                     <div className="flex flex-row justify-start h-[50vh] w-300 gap-x-10 p-5">
-                        <div className="flex flex-col h-[47vh] w-full">
+                        <div className="flex flex-col h-[47vh] w-full rounded-md">
                             <p className="font-normal text-2xl mb-5">Audit Trail</p>
-                            <AuditTrail data={AuditTrailData} />
+                            <div className="flex items-center gap-x-2 mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" stroke-linecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+                                Audit trail enables you to follow the process flow from start to finish.
+                            </div>
+                            <div className="flex h-full rounded-md overflow-y-auto">
+                                <AuditTrail data={AuditTrailData} />
+                            </div>
                         </div>
-                        <div className="flex flex-col h-[47vh] w-full border-1 border-black/20 rounded-md">
+                        <div className="flex flex-col h-[47vh] w-full border-[0.5px] border-black/20 rounded-md">
                             <Chat />
                         </div>
                     </div>
