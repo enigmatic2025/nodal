@@ -99,12 +99,6 @@ export function Chat() {
         { name: "thankful", icon: "🙏" },
         { name: "celebrate", icon: "🎉" },
     ];
-    const suggestions = [
-        "Need clarification on this step.",
-        "Waiting on response from others.",
-        "Will follow up tomorrow. 🙏",
-        "My part is done! 🥳",
-    ];
 
     const sendNote = () => {
         if (!draft.trim()) return;
