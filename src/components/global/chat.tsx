@@ -16,6 +16,7 @@ export function Chat() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [draft, setDraft] = useState("");
     const [emojiOpen, setEmojiOpen] = useState<number | null>(null);
+    const [noteSort, setNoteSort] = useState<string>("Descending");
     const [notes, setNotes] = useState<Note[]>([
         {
             id: 1,
@@ -154,26 +155,30 @@ export function Chat() {
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={onKey}
                     rows={4}
-                    className="flex rounded-md border text-sm w-full border-[#6581FF] p-2 resize-none focus:outline-none mb-2"
+                    className="flex rounded-md border-[0.5px] text-sm w-full border-[#6581FF] p-2 resize-none focus:outline-none"
                     placeholder="Add a note..."
                 />
-                <div className="flex w-full gap-2">
-                    {suggestions.map((text, idx) => (
-                        <div
-                            key={idx}
-                            onClick={() => setDraft(text)}
-                            className="flex justify-center items-center text-center bg-[#6581FF]/5 border-[#6581FF] border-1 text-[#6581FF] rounded-full w-full p-1 cursor-pointer"
-                        >
-                            {text}
-                        </div>
-                    ))}
+            </div>
+            {/* Notes count */}
+            <div className="flex items-center gap-x-1 mb-2">
+                <p className="font-semibold">Notes</p>
+                <div className="flex justify-center items-center h-5 aspect-square text-white rounded-full bg-[#6581FF] p-2">{notes.length}</div>
+                
+                {/* Notes Sort */}
+                <div onClick={() => { setNoteSort(noteSort === "Descending" ? "Ascending" : "Descending") }} className="flex items-center gap-x-1 hover:text-[#6581FF] ml-auto cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-down-up-icon lucide-arrow-down-up"><path d="m3 16 4 4 4-4" /><path d="M7 20V4" /><path d="m21 8-4-4-4 4" /><path d="M17 4v16" /></svg>
+                    {noteSort}
                 </div>
             </div>
 
-            {/* Messages */}
-            <div ref={scrollRef} className="flex-1 space-y-5 bg-white rounded-md p-5 overflow-y-auto">
+            {/* Divider */}
+            <div className="border-t-[0.5px] border-black/20 mb-2"/>
+
+
+            {/* Notes */}
+            <div ref={scrollRef} className="flex-1 space-y-5 bg-white rounded-md p-2 overflow-y-auto">
                 {notes
-                    .sort((a, b) => b.id - a.id)
+                    .sort((a, b) => noteSort === "Descending" ? b.id - a.id : a.id - b.id)
                     .map((note) => (
                         <div key={note.id} className="flex flex-row gap-x-2 w-full">
                             <UserAvatar user={{ name: note.user, image: undefined }} />
@@ -185,7 +190,7 @@ export function Chat() {
                                     {note.user}
                                 </span>
                                 <p className="mb-1">{note.text}</p>
-                                <span className={"text-gray-400 mb-1 block text-right"}>
+                                <span className={"text-gray-400 block text-right"}>
                                     {note.timestamp}
                                 </span>
 

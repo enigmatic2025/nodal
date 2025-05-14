@@ -16,12 +16,14 @@ export function AuditTrail({ data }: AuditTrailData) {
                 <div className="grid grid-cols-1 gap-y-5 p-5">
                     {data.map((entry, index) => (
                         <div key={entry.id} className="relative flex items-center gap-x-5 p-1">
+                            
                             {/* ID and timestamp */}
                             <p className="text-gray-400">
                                 ID: {entry.id}
                                 <br />
                                 {entry.timestamp}
                             </p>
+
                             {/* Timeline marker and line */}
                             <div className="flex flex-col items-center h-full relative z-10">
                                 <div className="flex justify-center items-center h-3 aspect-square bg-[#6581FF] rounded-full z-20">
@@ -35,8 +37,9 @@ export function AuditTrail({ data }: AuditTrailData) {
                             </div>
 
                             {/* Label and user */}
-                            <div className="flex-1 border border-[#6581FF] border-dashed rounded-md p-1">
-                                <p className="font-semibold w-[90%]">{entry.label}</p>
+                            <div className="flex-1 rounded-md">
+                                <p className="w-[90%]">{entry.label}</p>
+                                <p className="text-[#6581FF] font-semibold mt-2">User: <span className="text-black font-semibold">{entry.user}</span></p>
                             </div>
                         </div>
                     ))}
