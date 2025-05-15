@@ -27,18 +27,38 @@ export function ActionsTable() {
                     ActionsData.map((item, index) => (
                         <div key={index} onClick={() => window.open(item.link)} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b-[0.5px] border-black/20 cursor-pointer">
                             <div className={`
-                                    ${item.status === "In Progress" ? "bg-blue-50 text-blue-500 font-semibold" : ""}
-                                    ${item.status === "Complete" ? "bg-green-50 text-green-500 font-semibold" : ""}
-                                    ${item.status === "Cancelled" ? "bg-gray-50 text-gray-500 font-semibold" : ""}
-                                    w-[13ch]
+                                    ${item.status === "In Progress" ? "border border-blue-500 text-blue-500 font-semibold" : ""}
+                                    ${item.status === "Complete" ? "border border-green-500 text-green-500 font-semibold" : ""}
+                                    ${item.status === "Cancelled" ? "border border-gray-500 text-gray-500 font-semibold" : ""}
+                                    w-fit
                                     flex
-                                    flex-col
-                                    justify-center
+                                    flex-row
+                                    justify-start
                                     items-center
                                     rounded-full
                                     gap-2
                                     p-1
                                     `}>
+                                {item.status === "In Progress" && (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-ellipsis-icon">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M17 12h.01" />
+                                        <path d="M12 12h.01" />
+                                        <path d="M7 12h.01" />
+                                    </svg>
+                                )}
+                                {item.status === "Complete" && (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check-big-icon">
+                                        <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                                        <path d="m9 11 3 3L22 4" />
+                                    </svg>
+                                )}
+                                {item.status === "Cancelled" && (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-ban-icon">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="m4.9 4.9 14.2 14.2" />
+                                    </svg>
+                                )}
                                 {item.status}
                             </div>
                             <div>
