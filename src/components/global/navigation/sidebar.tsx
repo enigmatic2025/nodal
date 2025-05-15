@@ -19,7 +19,7 @@ export default function SideBar() {
                 width={100}
                 className="mb-5"
             />
-            <div className="w-full border-[0.5px] border-black/10 mb-5" />
+            <div className="w-full border-t border-black/10 mb-5" />
             <div className="flex flex-col w-full gap-y-3 mb-10">
                 {NavBarButtonData.map((item) => {
                     const isActive = pathname === item.href || pathname.startsWith(item.href + "/");

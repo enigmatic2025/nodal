@@ -141,7 +141,7 @@ export function Chat() {
     };
 
     return (
-        <div className="flex flex-col h-full w-full bg-white rounded-md text-[0.8rem] p-1">
+        <div className="flex flex-col h-full w-full rounded-md text-[0.8rem] p-1">
             {/* Input bar */}
             <div className="flex flex-col gap-y-1 items-start mb-2">
                 <textarea
@@ -149,7 +149,7 @@ export function Chat() {
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={onKey}
                     rows={4}
-                    className="flex rounded-md border-[0.5px] text-sm w-full border-[#6581FF] p-2 resize-none focus:outline-none"
+                    className="flex rounded-md border text-sm w-full border-[#6581FF] p-2 resize-none focus:outline-none"
                     placeholder="Add a note..."
                 />
             </div>
@@ -161,16 +161,16 @@ export function Chat() {
                 {/* Notes Sort */}
                 <div onClick={() => { setNoteSort(noteSort === "Descending" ? "Ascending" : "Descending") }} className="flex items-center gap-x-1 hover:text-[#6581FF] ml-auto cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-down-up-icon lucide-arrow-down-up"><path d="m3 16 4 4 4-4" /><path d="M7 20V4" /><path d="m21 8-4-4-4 4" /><path d="M17 4v16" /></svg>
-                    {noteSort}
+                    <span className="text-gray-500">{noteSort}</span>
                 </div>
             </div>
 
             {/* Divider */}
-            <div className="border-t-[0.5px] border-black/20 mb-2"/>
+            <div className="border-t border-black/10 mb-2"/>
 
 
             {/* Notes */}
-            <div ref={scrollRef} className="flex-1 space-y-5 bg-white rounded-md p-2 overflow-y-auto">
+            <div ref={scrollRef} className="flex-1 space-y-5 rounded-md p-2 overflow-y-auto">
                 {notes
                     .sort((a, b) => noteSort === "Descending" ? b.id - a.id : a.id - b.id)
                     .map((note) => (
@@ -215,7 +215,7 @@ export function Chat() {
 
                                     <div
                                         className={`
-                                            flex gap-5 bg-white transition-all duration-100
+                                            flex gap-5 transition-all duration-100
                                             ${emojiOpen === note.id ? "opacity-100" : "opacity-0"}
                                             `}
                                     >

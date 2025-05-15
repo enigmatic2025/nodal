@@ -16,7 +16,7 @@ export function AuditTrail({ data }: AuditTrailData) {
                 <div className="grid grid-cols-1 gap-y-5 p-5">
                     {data.map((entry, index) => (
                         <div key={entry.id} className="relative flex items-center gap-x-5 p-1">
-                            
+
                             {/* ID and timestamp */}
                             <p className="text-gray-400">
                                 ID: {entry.id}
@@ -37,9 +37,12 @@ export function AuditTrail({ data }: AuditTrailData) {
                             </div>
 
                             {/* Label and user */}
-                            <div className="flex-1 rounded-md">
+                            <div className="flex-1">
                                 <p className="w-[90%]">{entry.label}</p>
-                                <p className="text-[#6581FF] font-semibold mt-2">User: <span className="text-black font-semibold">{entry.user}</span></p>
+                                <div className="flex w-fit items-center gap-x-1 text-xs border rounded-full text-[#6581FF] mt-1 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    {entry.user}
+                                </div>
                             </div>
                         </div>
                     ))}

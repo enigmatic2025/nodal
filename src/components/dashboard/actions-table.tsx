@@ -14,7 +14,7 @@ export function ActionsTable() {
     const [open, setOpen] = useState<boolean>(false)
 
     return (
-        <div className="flex-grow min-h-[590px] min-w-[600px] border-[0.5px] border-black/20 rounded-md pb-5 pl-5 pr-5 overflow-auto">
+        <div className="flex-grow min-h-[590px] min-w-[600px] border border-black/10 rounded-md pb-5 pl-5 pr-5 overflow-auto">
             <div className="sticky top-0 grid grid-cols-5 gap-x-5 bg-white z-10 py-3 text-black font-semibold">
                 <div>Status</div>
                 <div>Process</div>
@@ -25,11 +25,11 @@ export function ActionsTable() {
             <div className="flex flex-col text-[0.8rem]">
                 {
                     ActionsData.map((item, index) => (
-                        <div key={index} onClick={() => window.open(item.link)} className="grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b-[0.5px] border-black/20 cursor-pointer">
+                        <div key={index} onClick={() => window.open(item.link)} className="group grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b border-black/10 cursor-pointer">
                             <div className={`
-                                    ${item.status === "In Progress" ? "border border-blue-500 text-blue-500 font-semibold" : ""}
-                                    ${item.status === "Complete" ? "border border-green-500 text-green-500 font-semibold" : ""}
-                                    ${item.status === "Cancelled" ? "border border-gray-500 text-gray-500 font-semibold" : ""}
+                                    ${item.status === "In Progress" ? "text-blue-500" : ""}
+                                    ${item.status === "Complete" ? " text-green-500" : ""}
+                                    ${item.status === "Cancelled" ? " text-gray-500" : ""}
                                     w-fit
                                     flex
                                     flex-row
@@ -74,7 +74,7 @@ export function ActionsTable() {
                                 e.stopPropagation();
                                 setOpen(true);
                             }}>
-                                <Button onClick={() => { setOpen(true) }}>Open</Button>
+                                <Button onClick={() => { setOpen(true) }} className="group-hover:font-normal">Open</Button>
                             </div>
                         </div>
                     ))
@@ -82,12 +82,12 @@ export function ActionsTable() {
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
                     <div className="flex flex-row justify-start h-[60vh] w-250 gap-x-10 p-2">
                         <div className="flex flex-col h-full w-full rounded-md">
-                            <div className="w-fit text-white text-lg bg-[#6581FF] rounded-full mb-5 pl-5 pr-5">Audit Trail</div>
-                            <div className="flex items-center gap-x-2 mb-5">
+                            <div className="w-fit text-xl text-[#6581FF] mb-5">Audit Trail</div>
+                            <div className="flex items-center font-normal gap-x-1 mb-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" stroke-linecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
                                 Audit trail enables you to follow the process flow from start to finish.
                             </div>
-                            <div className="flex h-full rounded-md bg-black/2 overflow-y-auto">
+                            <div className="flex h-full overflow-y-auto border border-black/10 rounded-md">
                                 <AuditTrail data={AuditTrailData} />
                             </div>
                         </div>

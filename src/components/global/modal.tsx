@@ -48,7 +48,7 @@ export const Modal = ({
                     >
                         <div className="bg-white rounded-md h-auto w-auto p-5 relative">
                             <div
-                                className="absolute top-2 right-2 cursor-pointer"
+                                className="absolute top-1 right-1 cursor-pointer"
                                 onClick={onClose}
                             >   
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x">
