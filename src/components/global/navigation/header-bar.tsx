@@ -9,7 +9,7 @@ export default function HeaderBar({ label }: HeaderBarProps) {
             <textarea
                 placeholder="Search"
                 rows={1}
-                className="flex min-w-[50%] resize-none rounded-md border border-[#6581FF] text-[1rem] p-2 focus:outline-none ml-auto">
+                className="flex min-w-[50%] resize-none rounded-md border border-[#6581FF] text-sm p-2 focus:outline-none ml-auto">
             </textarea>
             <div className="flex flex-row gap-x-5 ml-auto pr-5 text-sm">
                 <div className="group flex items-center text-black gap-x-1 cursor-pointer">
