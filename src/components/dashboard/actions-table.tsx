@@ -84,7 +84,7 @@ export function ActionsTable() {
                         <div className="flex flex-col h-full w-full rounded-md">
                             <div className="w-fit text-xl text-[#6581FF] mb-5">Audit Trail</div>
                             <div className="flex items-center font-normal gap-x-1 mb-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" stroke-linecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
                                 Audit trail enables you to follow the process flow from start to finish.
                             </div>
                             <div className="flex h-full overflow-y-auto border border-black/10 rounded-md">
