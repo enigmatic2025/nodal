@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/nodal-black.svg" />
+        <link rel="icon" href="/icon-color.svg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} subpixel-antialiased`}

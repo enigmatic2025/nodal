@@ -141,7 +141,7 @@ export function Chat() {
     };
 
     return (
-        <div className="flex flex-col h-full w-full rounded-md text-[0.8rem] p-1">
+        <div className="flex flex-col h-full w-full rounded-md text-[0.8rem]">
             {/* Input bar */}
             <div className="flex flex-col gap-y-1 items-start mb-2">
                 <textarea

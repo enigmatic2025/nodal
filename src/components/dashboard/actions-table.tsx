@@ -80,14 +80,23 @@ export function ActionsTable() {
                     ))
                 }
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
-                    <div className="flex flex-row justify-start h-[60vh] w-250 gap-x-10 p-2">
-                        <div className="flex flex-col h-full w-full rounded-md">
-                            <div className="w-fit text-xl text-[#6581FF] mb-5">Audit Trail</div>
-                            <div className="flex items-center font-normal gap-x-1 mb-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+                    <div className="flex flex-row items-center bg-[#6581FF] text-white rounded-md p-2">
+                        <div className="w-50%">
+                            <p className="w-fit text-xl">Audit Trail</p>
+                            <p className="flex items-center gap-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
                                 Audit trail enables you to follow the process flow from start to finish.
-                            </div>
-                            <div className="flex h-full overflow-y-auto border border-black/10 rounded-md">
+                            </p>
+                        </div>
+                        <textarea
+                            placeholder="Search Process ID"
+                            rows={1}
+                            className="flex h-[70%] w-[50%] resize-none rounded-md bg-white text-black text-sm p-2 focus:outline-none ml-auto">
+                        </textarea>
+                    </div>
+                    <div className="flex flex-row justify-start h-[50vh] w-250 gap-x-10 p-2">
+                        <div className="flex flex-col h-full w-full rounded-md">
+                            <div className="flex h-full border border-black/10 overflow-y-auto rounded-md">
                                 <AuditTrail data={AuditTrailData} />
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, ReactNode } from "react";
+import { Button } from "./button";
 
 export const Modal = ({
     isOpen,
@@ -51,18 +52,15 @@ export const Modal = ({
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
-                            className="bg-white rounded-md h-auto w-auto p-5 relative"
+                            className="bg-white rounded-md h-auto w-auto p-3 relative"
                         >
+                            {children}
                             <div
-                                className="absolute top-1 right-1 cursor-pointer"
+                                className="flex justify-center items-center mt-5 cursor-pointer"
                                 onClick={onClose}
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x">
-                                    <path d="M18 6 6 18" />
-                                    <path d="m6 6 12 12" />
-                                </svg>
+                                <Button>Close</Button>
                             </div>
-                            {children}
                         </div>
                     </motion.div>
                 </>
