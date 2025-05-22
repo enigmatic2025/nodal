@@ -1,232 +1,266 @@
-export interface Action {
+export interface ActionFlow {
+  id: number;
   process: string;
   description: string;
   status: 'In Progress' | 'Complete' | 'Cancelled';
-  duedate: Date;
-  conversation: Array<{ user: string; message: string; timestamp: string }>;
-  link: string;
+  priority: string;
+  deadline: Date;
 }
 
-export interface AuditEntry {
-    id: number;
-    label: string;
-    user: string;
-    timestamp?: string;
+export interface Action {
+  actionFlowID: number;
+  id: number;
+  label: string;
+  assignee: string;
+  url: string
+  deadline: string;
+  complete: boolean;
 }
 
-export const AuditTrailData: AuditEntry[] = [
+export const ActionData: Action[] = [
   {
-    id: 4920,
-    label: "The task was successfully assigned to John Wiseman for further action and follow-up.",
-    user: "John Wiseman",
-    timestamp: "2025-05-01 10:12",
+    actionFlowID: 1,
+    id: 101,
+    label: "Verify invoice details against Q2 marketing expenses",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/invoice/verify",
+    deadline: "2025-06-05T12:00:00Z",
+    complete: false
   },
   {
-    id: 5013,
-    label: "The previously assigned action has been unassigned by Ashley Alexander and is now pending reassignment.",
-    user: "Ashley Alexander",
-    timestamp: "2025-05-02 14:35",
+    actionFlowID: 1,
+    id: 102,
+    label: "Approve invoice in accounting system after validation",
+    assignee: "Emily Chen",
+    url: "https://app.yourdomain.com/invoice/approve",
+    deadline: "2025-06-10T17:00:00Z",
+    complete: false
   },
   {
-    id: 7931,
-    label: "Ashley Alexander reassigned the action item to Jeff Nemmers to ensure timely completion.",
-    user: "Ashley Alexander",
-    timestamp: "2025-05-03 09:20",
+    actionFlowID: 2,
+    id: 201,
+    label: "Send welcome email with onboarding instructions",
+    assignee: "Rebecca Allen",
+    url: "https://app.yourdomain.com/onboarding/email",
+    deadline: "2025-05-13T09:00:00Z",
+    complete: true
   },
   {
-    id: 8367,
-    label: "Jeff Nemmers marked the task as completed after verifying all requirements were met.",
-    user: "Jeff Nemmers",
-    timestamp: "2025-05-04 16:50",
+    actionFlowID: 2,
+    id: 202,
+    label: "Add new hire to payroll system and assign benefits",
+    assignee: "David Kim",
+    url: "https://app.yourdomain.com/onboarding/payroll",
+    deadline: "2025-05-14T17:00:00Z",
+    complete: true
   },
+  {
+    actionFlowID: 3,
+    id: 301,
+    label: "Export server logs for audit and compliance reporting",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/audit/logs",
+    deadline: "2025-05-28T10:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 3,
+    id: 302,
+    label: "Run vulnerability scan across all production servers",
+    assignee: "Megan Stone",
+    url: "https://app.yourdomain.com/audit/scan",
+    deadline: "2025-05-30T18:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 4,
+    id: 401,
+    label: "Deploy new feature to staging environment for QA",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/feature/deploy-staging",
+    deadline: "2025-05-27T15:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 5,
+    id: 501,
+    label: "Finalize homepage design and deliver to developers",
+    assignee: "Tina Morales",
+    url: "https://app.yourdomain.com/redesign/finalize",
+    deadline: "2025-04-28T17:00:00Z",
+    complete: true
+  },
+  {
+    actionFlowID: 6,
+    id: 601,
+    label: "Review vendor contract and highlight renewal clauses",
+    assignee: "Sophia Reyes",
+    url: "https://app.yourdomain.com/vendor/review",
+    deadline: "2025-05-30T14:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 6,
+    id: 602,
+    label: "Renew cloud services subscription before expiry",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/vendor/renew",
+    deadline: "2025-06-04T12:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 7,
+    id: 701,
+    label: "Run deduplication script on customer email database",
+    assignee: "Brian Carter",
+    url: "https://app.yourdomain.com/data/cleanup",
+    deadline: "2025-05-09T13:00:00Z",
+    complete: true
+  },
+  {
+    actionFlowID: 8,
+    id: 801,
+    label: "Triage top reported bugs from QA backlog",
+    assignee: "Olivia Zhang",
+    url: "https://app.yourdomain.com/bugs/triage",
+    deadline: "2025-05-23T10:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 8,
+    id: 802,
+    label: "Assign top priority bugs to appropriate engineers",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/bugs/assign",
+    deadline: "2025-05-24T16:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 8,
+    id: 803,
+    label: "Deploy emergency hotfix to production servers",
+    assignee: "Noah Patel",
+    url: "https://app.yourdomain.com/bugs/deploy",
+    deadline: "2025-05-25T16:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 9,
+    id: 901,
+    label: "Send feedback form to all employees post-review",
+    assignee: "Rebecca Allen",
+    url: "https://app.yourdomain.com/reviews/form",
+    deadline: "2025-05-25T09:00:00Z",
+    complete: true
+  },
+  {
+    actionFlowID: 9,
+    id: 902,
+    label: "Schedule 1-on-1 performance review meetings",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/reviews/schedule",
+    deadline: "2025-06-05T10:00:00Z",
+    complete: false
+  },
+  {
+    actionFlowID: 10,
+    id: 1001,
+    label: "Prepare inventory records for recount session",
+    assignee: "Natalie Brooks",
+    url: "https://app.yourdomain.com/inventory/prepare",
+    deadline: "2025-05-16T10:00:00Z",
+    complete: true
+  },
+  {
+    actionFlowID: 10,
+    id: 1002,
+    label: "Execute physical recount and submit final numbers",
+    assignee: "Anthony Flores",
+    url: "https://app.yourdomain.com/inventory/recount",
+    deadline: "2025-05-18T12:00:00Z",
+    complete: false
+  }
 ];
 
-
-export const ActionsData: Action[] = [
-  {
-    process: 'Invoice Review',
-    description: 'Validate Q2 invoice for duplicate line items.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-10'),
-    conversation: [
-      { user: 'Sam', message: 'Flagged a duplicate on line 3.', timestamp: '2025-05-05T10:15:00' },
-      { user: 'Jenna', message: 'Reviewed and confirmed.', timestamp: '2025-05-06T09:22:00' },
-    ],
-    link: 'https://app.company.com/forms/invoice-review-1245'
+export const ActionFlowData: ActionFlow[] = [
+ {
+    id: 1,
+    process: "Invoice Approval",
+    description: "Review and approve vendor invoice for Q2 marketing expenses.",
+    status: "In Progress",
+    priority: "High",
+    deadline: new Date("2025-06-10T17:00:00Z")
   },
   {
-    process: 'Carrier Onboarding',
-    description: 'Upload W-9 and insurance docs for SmartHaul LLC.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-12'),
-    conversation: [],
-    link: 'https://app.company.com/onboarding/smarthaul'
+    id: 2,
+    process: "Onboarding",
+    description: "Complete onboarding tasks for new hire: Julia Tran.",
+    status: "Complete",
+    priority: "Medium",
+    deadline: new Date("2025-05-15T23:59:59Z")
   },
   {
-    process: 'Temperature Alert Follow-Up',
-    description: 'Investigate reefer trailer 342 temp spike.',
-    status: 'Cancelled',
-    duedate: new Date('2025-05-08'),
-    conversation: [
-      { user: 'Mike', message: 'Waiting on telematics log.', timestamp: '2025-05-07T14:10:00' },
-    ],
-    link: 'https://telematics.company.com/alerts/342'
+    id: 3,
+    process: "Security Audit",
+    description: "Compile logs and run vulnerability scan for Q2 audit.",
+    status: "In Progress",
+    priority: "High",
+    deadline: new Date("2025-06-01T12:00:00Z")
   },
   {
-    process: 'Contract Signature',
-    description: 'Send DocuSign to new vendor.',
-    status: 'Complete',
-    duedate: new Date('2025-05-03'),
-    conversation: [],
-    link: 'https://docusign.com/contract/8391'
+    id: 4,
+    process: "Feature Rollout",
+    description: "Deploy new search functionality to production.",
+    status: "Cancelled",
+    priority: "High",
+    deadline: new Date("2025-05-30T23:59:59Z")
   },
   {
-    process: 'Dispatch Confirmation',
-    description: 'Confirm delivery window with Bravo Logistics.',
-    status: 'Cancelled',
-    duedate: new Date('2025-05-11'),
-    conversation: [
-      { user: 'Sara', message: 'Holding off until client confirms site hours.', timestamp: '2025-05-05T17:00:00' },
-    ],
-    link: 'https://dispatch.company.com/orders/5619'
+    id: 5,
+    process: "Website Redesign",
+    description: "Finalize homepage redesign and send to dev team.",
+    status: "Complete",
+    priority: "Low",
+    deadline: new Date("2025-05-01T18:00:00Z")
   },
   {
-    process: 'System Update',
-    description: 'Push TMS integration patch for rate engine.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-14'),
-    conversation: [
-      { user: 'DevOps', message: 'Patch pushed to staging.', timestamp: '2025-05-06T13:00:00' },
-    ],
-    link: 'https://git.company.com/merge-request/348'
+    id: 6,
+    process: "Vendor Renewal",
+    description: "Review contract and renew cloud service vendor agreement.",
+    status: "In Progress",
+    priority: "Medium",
+    deadline: new Date("2025-06-05T12:00:00Z")
   },
   {
-    process: 'Payment Exception',
-    description: 'Resolve ACH failure for Vendor ID #55902.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-09'),
-    conversation: [],
-    link: 'https://finance.company.com/exceptions/55902'
+    id: 7,
+    process: "Data Cleanup",
+    description: "Remove duplicates and validate customer emails.",
+    status: "Complete",
+    priority: "Low",
+    deadline: new Date("2025-05-10T17:00:00Z")
   },
   {
-    process: 'Customer Escalation',
-    description: 'Investigate missed delivery for PO#99843.',
-    status: 'Complete',
-    duedate: new Date('2025-05-07'),
-    conversation: [
-      { user: 'Logistics', message: 'Driver arrived late due to breakdown.', timestamp: '2025-05-06T08:44:00' },
-    ],
-    link: 'https://support.company.com/escalations/99843'
+    id: 8,
+    process: "Bug Triage",
+    description: "Review top 5 bugs and assign to engineering.",
+    status: "In Progress",
+    priority: "High",
+    deadline: new Date("2025-05-25T16:00:00Z")
   },
   {
-    process: 'Access Rights Review',
-    description: 'Audit admin access for DB cluster.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-15'),
-    conversation: [],
-    link: 'https://security.company.com/audits/db-access'
+    id: 9,
+    process: "Performance Review",
+    description: "Gather feedback and schedule 1-on-1s.",
+    status: "In Progress",
+    priority: "Medium",
+    deadline: new Date("2025-06-15T09:00:00Z")
   },
   {
-    process: 'Freight Quote Comparison',
-    description: 'Evaluate LTL quotes for Midwest outbound loads.',
-    status: 'Complete',
-    duedate: new Date('2025-05-04'),
-    conversation: [
-      { user: 'Ops', message: 'Chosen carrier: Central Freight.', timestamp: '2025-05-03T16:11:00' },
-    ],
-    link: 'https://freight.company.com/quotes/midwest-outbound'
-  },
-  {
-    process: 'Invoice Review',
-    description: 'Validate Q2 invoice for duplicate line items.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-10'),
-    conversation: [
-      { user: 'Sam', message: 'Flagged a duplicate on line 3.', timestamp: '2025-05-05T10:15:00' },
-      { user: 'Jenna', message: 'Reviewed and confirmed.', timestamp: '2025-05-06T09:22:00' },
-    ],
-    link: 'https://app.company.com/forms/invoice-review-1245'
-  },
-  {
-    process: 'Carrier Onboarding',
-    description: 'Upload W-9 and insurance docs for SmartHaul LLC.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-12'),
-    conversation: [],
-    link: 'https://app.company.com/onboarding/smarthaul'
-  },
-  {
-    process: 'Temperature Alert Follow-Up',
-    description: 'Investigate reefer trailer 342 temp spike.',
-    status: 'Cancelled',
-    duedate: new Date('2025-05-08'),
-    conversation: [
-      { user: 'Mike', message: 'Waiting on telematics log.', timestamp: '2025-05-07T14:10:00' },
-    ],
-    link: 'https://telematics.company.com/alerts/342'
-  },
-  {
-    process: 'Contract Signature',
-    description: 'Send DocuSign to new vendor.',
-    status: 'Complete',
-    duedate: new Date('2025-05-03'),
-    conversation: [],
-    link: 'https://docusign.com/contract/8391'
-  },
-  {
-    process: 'Dispatch Confirmation',
-    description: 'Confirm delivery window with Bravo Logistics.',
-    status: 'Cancelled',
-    duedate: new Date('2025-05-11'),
-    conversation: [
-      { user: 'Sara', message: 'Holding off until client confirms site hours.', timestamp: '2025-05-05T17:00:00' },
-    ],
-    link: 'https://dispatch.company.com/orders/5619'
-  },
-  {
-    process: 'System Update',
-    description: 'Push TMS integration patch for rate engine.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-14'),
-    conversation: [
-      { user: 'DevOps', message: 'Patch pushed to staging.', timestamp: '2025-05-06T13:00:00' },
-    ],
-    link: 'https://git.company.com/merge-request/348'
-  },
-  {
-    process: 'Payment Exception',
-    description: 'Resolve ACH failure for Vendor ID #55902.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-09'),
-    conversation: [],
-    link: 'https://finance.company.com/exceptions/55902'
-  },
-  {
-    process: 'Customer Escalation',
-    description: 'Investigate missed delivery for PO#99843.',
-    status: 'Complete',
-    duedate: new Date('2025-05-07'),
-    conversation: [
-      { user: 'Logistics', message: 'Driver arrived late due to breakdown.', timestamp: '2025-05-06T08:44:00' },
-    ],
-    link: 'https://support.company.com/escalations/99843'
-  },
-  {
-    process: 'Access Rights Review',
-    description: 'Audit admin access for DB cluster.',
-    status: 'In Progress',
-    duedate: new Date('2025-05-15'),
-    conversation: [],
-    link: 'https://security.company.com/audits/db-access'
-  },
-  {
-    process: 'Freight Quote Comparison',
-    description: 'Evaluate LTL quotes for Midwest outbound loads.',
-    status: 'Complete',
-    duedate: new Date('2025-05-04'),
-    conversation: [
-      { user: 'Ops', message: 'Chosen carrier: Central Freight.', timestamp: '2025-05-03T16:11:00' },
-    ],
-    link: 'https://freight.company.com/quotes/midwest-outbound'
+    id: 10,
+    process: "Inventory Recount",
+    description: "Perform monthly inventory check for warehouse B.",
+    status: "Cancelled",
+    priority: "Low",
+    deadline: new Date("2025-05-18T12:00:00Z")
   }
 ];

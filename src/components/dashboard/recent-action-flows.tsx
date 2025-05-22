@@ -1,35 +1,44 @@
 "use client"
 
 import { useState } from "react"
-import { ActionsData } from "@/data/actions-data"
-import { AuditTrailData } from "@/data/actions-data"
-import { Button } from "../global/button"
+import { ActionFlowData } from "@/data/actions-data"
+import { ActionData } from "@/data/actions-data"
 import { Chat } from "../global/chat"
 import { Modal } from "../global/modal"
-import { AuditTrail } from "../global/audit-trail"
+import { ActionTrail } from "../global/action-trail"
 
 
 
-export function ActionsTable() {
+export function RecentActionFlows() {
     const [open, setOpen] = useState<boolean>(false)
+    const [selectedFlowID, setSelectedFlowID] = useState<number | null>(null)
+
+    const handleRowClick = (id: number) => {
+        setSelectedFlowID(id)
+        setOpen(true)
+    }
+
+    const filteredActions = selectedFlowID
+        ? ActionData.filter(action => action.actionFlowID === selectedFlowID)
+        : []
 
     return (
         <div className="flex-grow min-h-[590px] min-w-[600px] border border-black/10 rounded-md pb-5 pl-5 pr-5 overflow-auto">
-            <div className="sticky top-0 grid grid-cols-5 gap-x-5 bg-white z-10 py-3 text-black font-semibold">
+            <div className="sticky top-0 grid grid-cols-5 gap-x-5 z-10 py-3 text-black font-semibold">
                 <div>Status</div>
+                <div>Priority</div>
                 <div>Process</div>
                 <div>Description</div>
-                <div>Due Date</div>
-                <div>Audit Trail</div>
+                <div>Deadline</div>
             </div>
             <div className="flex flex-col text-[0.8rem]">
                 {
-                    ActionsData.map((item, index) => (
-                        <div key={index} onClick={() => window.open(item.link)} className="group grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b border-black/10 cursor-pointer">
+                    ActionFlowData.map((item, index) => (
+                        <div key={index} onClick={() => { setOpen(true); handleRowClick(item.id) }} className="group grid grid-cols-5 min-h-12 items-center gap-x-5 hover:bg-black/2 border-b border-black/10 cursor-pointer">
                             <div className={`
-                                    ${item.status === "In Progress" ? "text-blue-500" : ""}
-                                    ${item.status === "Complete" ? " text-green-500" : ""}
-                                    ${item.status === "Cancelled" ? " text-gray-500" : ""}
+                                    ${item.status === "In Progress" ? "border text-blue-500" : ""}
+                                    ${item.status === "Complete" ? " border text-green-500" : ""}
+                                    ${item.status === "Cancelled" ? " border text-gray-500" : ""}
                                     w-fit
                                     flex
                                     flex-row
@@ -61,6 +70,21 @@ export function ActionsTable() {
                                 )}
                                 {item.status}
                             </div>
+                            <div className={`
+                                    ${item.priority === "High" ? "border border-red-500 text-red-500" : ""}
+                                    ${item.priority === "Medium" ? "border border-blue-500 text-blue-500" : ""}
+                                    ${item.priority === "Low" ? "border border-green-500 text-green-500" : ""}
+                                    w-[10ch]
+                                    flex
+                                    flex-row
+                                    justify-center
+                                    items-center
+                                    rounded-full
+                                    gap-2
+                                    p-1
+                                `}>
+                                {item.priority}
+                            </div>
                             <div>
                                 {item.process}
                             </div>
@@ -68,13 +92,7 @@ export function ActionsTable() {
                                 {item.description}
                             </div>
                             <div>
-                                {item.duedate.toLocaleDateString()}
-                            </div>
-                            <div onClick={(e) => {
-                                e.stopPropagation();
-                                setOpen(true);
-                            }}>
-                                <Button onClick={() => { setOpen(true) }} className="group-hover:font-normal">Open</Button>
+                                {item.deadline.toLocaleDateString()}
                             </div>
                         </div>
                     ))
@@ -82,14 +100,14 @@ export function ActionsTable() {
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
                     <div className="flex flex-row items-center bg-[#6581FF] text-white rounded-md p-2">
                         <div className="w-50%">
-                            <p className="w-fit text-xl">Audit Trail</p>
+                            <p className="w-fit text-xl">Action Trail</p>
                             <p className="flex items-center gap-x-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
-                                Audit trail enables you to follow the process flow from start to finish.
+                                The action trail enables you to follow the workflow from start to finish.
                             </p>
                         </div>
                         <textarea
-                            placeholder="Search Process ID"
+                            placeholder="Search Action Flow ID"
                             rows={1}
                             className="flex h-[70%] w-[50%] resize-none rounded-md bg-white text-black text-sm p-2 focus:outline-none ml-auto">
                         </textarea>
@@ -97,7 +115,7 @@ export function ActionsTable() {
                     <div className="flex flex-row justify-start h-[50vh] w-250 gap-x-10 p-2">
                         <div className="flex flex-col h-full w-full rounded-md">
                             <div className="flex h-full border border-black/10 overflow-y-auto rounded-md">
-                                <AuditTrail data={AuditTrailData} />
+                                <ActionTrail data={filteredActions} />
                             </div>
                         </div>
                         <div className="flex flex-col h-full w-full rounded-md">

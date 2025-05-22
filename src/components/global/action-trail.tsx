@@ -1,17 +1,21 @@
 import { motion } from "motion/react"
+import { user } from "@/data/user-data";
+import { Button } from "./button";
 
-interface AuditEntry {
+interface Action {
     id: number;
     label: string;
-    user: string;
-    timestamp?: string;
+    assignee: string;
+    url: string
+    deadline: string;
+    complete: boolean;
 }
 
-interface AuditTrailData {
-    data: AuditEntry[]
+interface ActionTrailData {
+    data: Action[]
 }
 
-export function AuditTrail({ data }: AuditTrailData) {
+export function ActionTrail({ data }: ActionTrailData) {
     return (
         <div className="flex flex-col h-full text-[0.8rem]">
             <div className="h-full">
@@ -23,13 +27,17 @@ export function AuditTrail({ data }: AuditTrailData) {
                             <p className="text-gray-400">
                                 <span className="font-bold text-black">ID: {entry.id}</span>
                                 <br />
-                                {entry.timestamp}
+                                {entry.deadline}
+                                <div className="flex w-fit items-center gap-x-1 text-xs text-[#6581FF] mt-2 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                                    {entry.assignee}
+                                </div>
                             </p>
 
                             {/* Timeline marker and line */}
                             <div className="flex flex-col items-center h-full relative z-10">
                                 <div className="flex justify-center items-center h-4 aspect-square border border-[#6581FF] rounded-full z-20">
-                                    {index === data.length - 1 ? (
+                                    {entry.complete === false ? (
                                         <motion.div
                                             className="h-1.5 aspect-square bg-[#6581FF] rounded-full z-20"
                                             animate={{ opacity: [1, 0, 1] }}
@@ -40,7 +48,9 @@ export function AuditTrail({ data }: AuditTrailData) {
                                             }}
                                         />
                                     ) : (
-                                        <div className="h-3 aspect-square bg-[#6581FF] rounded-full z-20" />
+                                        <div className="flex justify-center items-center text-[#6581FF] h-3 aspect-square rounded-full z-20">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                        </div>
                                     )}
                                 </div>
                                 {/* Only render the dashed line if not the last entry */}
@@ -52,11 +62,11 @@ export function AuditTrail({ data }: AuditTrailData) {
                             {/* Label and user */}
                             <div className="flex-1">
                                 <p className="w-[90%]">{entry.label}</p>
-                                <div className="flex w-fit items-center gap-x-1 text-xs border rounded-full text-[#6581FF] mt-2 p-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
-                                    {entry.user}
-                                </div>
                             </div>
+                            {
+                                entry.assignee === user.firstName + ' ' + user.lastName && (index === 0 || data[index - 1].complete === true) &&
+                                <Button className="ml-auto">Go</Button>
+                            }
                         </div>
                     ))}
                 </div>
