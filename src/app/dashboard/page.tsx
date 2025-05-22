@@ -1,6 +1,5 @@
 import { RecentActionFlows } from "@/components/dashboard/recent-action-flows"
 import { QuickAccess } from "@/components/dashboard/quick-acess"
-import { Conversations } from "@/components/dashboard/conversations"
 import HeaderBar from "@/components/global/navigation/header-bar"
 
 export default function Dashboard() {
@@ -9,7 +8,6 @@ export default function Dashboard() {
             <HeaderBar label={"Dashboard"} />
             <div className="flex flex-row gap-x-20">
             <QuickAccess />
-            <Conversations />
             </div>
             <h2 className="text-md font-semibold mb-3">Recent Action Flows</h2>
             <RecentActionFlows />

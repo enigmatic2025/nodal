@@ -1,14 +1,5 @@
 import { UserAvatar } from "../global/user-avatar"
 
-interface Note {
-    id: number;
-    text: string;
-    user: string;
-    timestamp: string;
-    fromMe?: boolean;
-    reactions: { name: string; count: number }[]
-}
-
 export function Conversations() {
 
     return (
